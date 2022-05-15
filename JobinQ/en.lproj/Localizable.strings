@@ -1,0 +1,27 @@
+/* 
+  Localizable.strings
+  JobinQ
+
+  Created by Ton Silva on 10/5/22.
+  
+*/
+
+// Login
+
+"login_app_title" = "JobinQ";
+"login_welcome_label" = "Are you ready for this Quiz?";
+"login_button_title" = "LOGIN";
+"login_signup_button_title" = "SIGNUP";
+"login_email_button_placeholder" = "e-mail";
+"login_password_button_placeholder" = "password";
+"login_or_label" = "or";
+"" = "";
+
+// Sign Up
+"signup_app_title" = "JobinQ";
+"signup_instructions_label" = "Type your e-mail and password bellow:";
+"signup_button_title" = "SIGNUP";
+"signup_email_button_placeholder" = "e-mail";
+"signup_password_button_placeholder" = "password";
+"signup_confirm_password_button_placeholder" = "confirm password";
+
