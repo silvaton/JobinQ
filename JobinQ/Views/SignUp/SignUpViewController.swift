@@ -24,23 +24,49 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = false
         navigationController?.navigationBar.barTintColor = AppColors.backgroundColor
-        setupObservables()
+        setupTextFields()
         setupTaps()
+        setupObservables()
     }
     
     private func setupTaps() {
         self.hideKeyboardWhenTappedAround()
         self.contentView.signUpButton.addTarget(self, action: #selector(didTapSignUpButton), for: .touchUpInside)
     }
-    private func setupObservables() {
+    private func setupTextFields() {
         (contentView.signUpEmailTextField.rx.text.orEmpty <-> self.viewModel.userEmail).disposed(by: disposeBag)
         (contentView.signUpPasswordTextField.rx.text.orEmpty <-> self.viewModel.userPassword).disposed(by: disposeBag)
         (contentView.signUpConfirmPasswordTextField.rx.text.orEmpty <-> self.viewModel.userConfirmPassword).disposed(by: disposeBag)
     }
     
     @objc func didTapSignUpButton() {
-        print(self.viewModel.userEmail.value)
-        print(self.viewModel.userPassword.value)
-        print(self.viewModel.userConfirmPassword.value)
+        self.viewModel.signUpRequest()
+    }
+    
+    private func setupObservables() {
+        
+        //Error on Creating Account
+        viewModel.errorOnCreatingAccount
+            .asDriver(onErrorJustReturn: "Erro Desconhecido")
+            .drive(onNext: {[weak self] err in
+                guard let self = self else { return }
+                self.showAlert(title: "Error on Creating Account", message: err)
+            }).disposed(by: disposeBag)
+        
+        
+        //Success on Creating Account
+        viewModel.successOnCreatingAccount
+            .asObserver()
+            .subscribe(onNext: {
+                self.showAlert(title: "Congratulations", message: "Success on Creating Account")
+            }).disposed(by: disposeBag)
+    }
+    
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+            self.dismiss(animated: true)
+        }))
+        present(alert, animated: true)
     }
 }

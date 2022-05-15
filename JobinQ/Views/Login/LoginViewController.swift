@@ -16,6 +16,7 @@ class LoginViewController: UIViewController {
 
     //MARK: - Variables and Constants
     var contentView = LoginView()
+    var repository = LoginRepository()
     var viewModel = AppViewModel()
     private let disposeBag = DisposeBag()
     
@@ -28,6 +29,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = true
         setupTaps()
+        setupTextFields()
         setupObservables()
     }
     
@@ -36,7 +38,7 @@ class LoginViewController: UIViewController {
         navigationController?.isNavigationBarHidden = true
     }
     
-    private func setupObservables() {
+    private func setupTextFields() {
         (contentView.loginEmailTextField.rx.text.orEmpty <-> self.viewModel.userEmail).disposed(by: disposeBag)
         (contentView.loginPasswordTextField.rx.text.orEmpty <-> self.viewModel.userPassword).disposed(by: disposeBag)
     }
@@ -56,5 +58,34 @@ class LoginViewController: UIViewController {
     @objc func didTapLoginButton() {
         print(viewModel.userEmail.value)
         print(viewModel.userPassword.value)
+        self.viewModel.loginRequest()
+    }
+    
+    private func setupObservables() {
+        
+        //Login error
+        viewModel.errorOnValidatingUser
+            .asDriver(onErrorJustReturn: "Error Desconhecido")
+            .drive(onNext: {[weak self] err in
+                guard let self = self else { return }
+                print("aqqqquuuuiii")
+                self.showAlert(title: "Invalid Login", message: err)
+                print(err)
+            }).disposed(by: disposeBag)
+        
+        //Success on Login
+        viewModel.successOnValidatingUser
+            .asObserver()
+            .subscribe(onNext: {
+                self.showAlert(title: "Success", message: "Congratulations")
+            }).disposed(by: disposeBag)
+    }
+    
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _  in
+            self.dismiss(animated: true)
+        }))
+        present(alert, animated: true)
     }
 }
