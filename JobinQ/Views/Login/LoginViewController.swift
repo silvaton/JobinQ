@@ -65,19 +65,19 @@ class LoginViewController: UIViewController {
         
         //Login error
         viewModel.errorOnValidatingUser
-            .asDriver(onErrorJustReturn: "Error Desconhecido")
+            .asDriver(onErrorJustReturn: "unknow_error".localized)
             .drive(onNext: {[weak self] err in
                 guard let self = self else { return }
-                print("aqqqquuuuiii")
-                self.showAlert(title: "Invalid Login", message: err)
-                print(err)
+                self.showAlert(title: "error_on_login".localized, message: err)
             }).disposed(by: disposeBag)
         
         //Success on Login
         viewModel.successOnValidatingUser
             .asObserver()
             .subscribe(onNext: {
-                self.showAlert(title: "Success", message: "Congratulations")
+                self.showAlert(
+                    title: "login_success_alert_title".localized,
+                    message: "login_success_alert_message".localized)
             }).disposed(by: disposeBag)
     }
     

@@ -6,6 +6,12 @@
   
 */
 
+//Error
+"unknow_error" = "Unkown Error";
+"error_creating_account_alert_title" = "Something went wrong";
+"error_on_login" = "Login Failed";
+"" = "";
+
 // Login
 
 "login_app_title" = "JobinQ";
@@ -15,6 +21,8 @@
 "login_email_button_placeholder" = "e-mail";
 "login_password_button_placeholder" = "password";
 "login_or_label" = "or";
+"login_success_alert_title" = "Congratulations";
+"login_success_alert_message" = "You provided the correct credentials!";
 "" = "";
 
 // Sign Up
@@ -24,4 +32,6 @@
 "signup_email_button_placeholder" = "e-mail";
 "signup_password_button_placeholder" = "password";
 "signup_confirm_password_button_placeholder" = "confirm password";
+"signup_success_alert_title" = "Congratulations";
+"signup_success_alert_message" = "Account created successfully!";
 

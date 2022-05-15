@@ -47,10 +47,10 @@ class SignUpViewController: UIViewController {
         
         //Error on Creating Account
         viewModel.errorOnCreatingAccount
-            .asDriver(onErrorJustReturn: "Erro Desconhecido")
+            .asDriver(onErrorJustReturn: "unknow_error".localized)
             .drive(onNext: {[weak self] err in
                 guard let self = self else { return }
-                self.showAlert(title: "Error on Creating Account", message: err)
+                self.showAlert(title: "error_creating_account_alert_title".localized, message: err)
             }).disposed(by: disposeBag)
         
         
@@ -58,7 +58,8 @@ class SignUpViewController: UIViewController {
         viewModel.successOnCreatingAccount
             .asObserver()
             .subscribe(onNext: {
-                self.showAlert(title: "Congratulations", message: "Success on Creating Account")
+                self.showAlert(title: "signup_success_alert_title".localized,
+                               message: "signup_success_alert_message".localized)
             }).disposed(by: disposeBag)
     }
     
