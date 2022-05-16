@@ -16,7 +16,6 @@ class SignUpView: UIView {
         backgroundColor = AppColors.backgroundColor
         addViews()
         addConstraints()
-        layoutCustomization()
     }
     
     required init(coder: NSCoder) {
@@ -154,11 +153,6 @@ class SignUpView: UIView {
         textField.borderStyle = UITextField.BorderStyle.roundedRect
         textField.keyboardType = keyboardType
         return textField
-    }
-    
-    private func layoutCustomization() {
-        signUpPasswordTextField.isSecureTextEntry = true
-        signUpConfirmPasswordTextField.isSecureTextEntry = true
     }
 }
 

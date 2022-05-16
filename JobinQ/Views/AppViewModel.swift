@@ -18,6 +18,7 @@ protocol AppViewModelType {
     var successOnCreatingAccount: PublishSubject<Void> { get }
     var errorOnValidatingUser: PublishSubject<String> { get }
     var errorOnCreatingAccount: PublishSubject<String> { get }
+    var isAllFieldsValid: Observable<Bool> { get }
 }
 
 public class AppViewModel: AppViewModelType {
@@ -32,6 +33,14 @@ public class AppViewModel: AppViewModelType {
     
     let repository =  LoginRepository()
     
+    //MARK: - Validations
+    
+    var isAllFieldsValid: Observable<Bool> {
+        return Observable.combineLatest(userEmail.asObservable(), userPassword.asObservable(), userConfirmPassword.asObservable()) { email,password,confirmPassword in
+            email.isValidEmail() && !password.isEmpty && password == confirmPassword && password.isValidPassword()
+        }
+    }
+    
     //MARK: - Requests
     
     func loginRequest() {
@@ -41,7 +50,6 @@ public class AppViewModel: AppViewModelType {
         repository.signin(request: request) { success, errorMessage in
             if success == true {
                 self.successOnValidatingUser.onNext(())
-                print("success on doing login")
             } else {
                 self.errorOnValidatingUser.onNext(errorMessage?.localizedDescription ?? "")
                 print(errorMessage?.localizedDescription)
@@ -56,11 +64,11 @@ public class AppViewModel: AppViewModelType {
         repository.signup(request: request) { success,error  in
             if success == true {
                 self.successOnCreatingAccount.onNext(())
-                print("deu certo")
             } else {
                 self.errorOnCreatingAccount.onNext(error?.localizedDescription ?? "")
-                print("deu ruim")
             }
         }
     }
+    
+    
 }

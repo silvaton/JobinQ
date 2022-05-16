@@ -61,6 +61,15 @@ class SignUpViewController: UIViewController {
                 self.showAlert(title: "signup_success_alert_title".localized,
                                message: "signup_success_alert_message".localized)
             }).disposed(by: disposeBag)
+        
+        viewModel.isAllFieldsValid
+            .bind(to: contentView.signUpButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        viewModel.isAllFieldsValid
+            .map({$0 ? CGFloat(1):CGFloat(0.5)})
+            .bind(to: contentView.signUpButton.rx.alpha)
+            .disposed(by: disposeBag)
     }
     
     private func showAlert(title: String, message: String) {
