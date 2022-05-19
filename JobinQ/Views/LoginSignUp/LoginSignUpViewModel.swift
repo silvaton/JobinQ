@@ -1,5 +1,5 @@
 //
-//  AppViewModel.swift
+//  LoginSignUpViewModel.swift
 //  JobinQ
 //
 //  Created by Ton Silva on 13/5/22.
@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxRelay
 
-protocol AppViewModelType {
+protocol LoginSignUpViewModelType {
     
     var userEmail: BehaviorRelay<String> { get }
     var userPassword: BehaviorRelay<String> { get }
@@ -21,7 +21,7 @@ protocol AppViewModelType {
     var isAllFieldsValid: Observable<Bool> { get }
 }
 
-public class AppViewModel: AppViewModelType {
+public class LoginSignUpViewModel: LoginSignUpViewModelType {
     var userEmail = BehaviorRelay<String>(value: "")
     var userPassword = BehaviorRelay<String>(value: "")
     var userConfirmPassword = BehaviorRelay<String>(value: "")
@@ -66,6 +66,4 @@ public class AppViewModel: AppViewModelType {
             }
         }
     }
-    
-    
 }

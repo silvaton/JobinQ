@@ -16,8 +16,7 @@ class LoginViewController: UIViewController {
 
     //MARK: - Variables and Constants
     var contentView = LoginView()
-    var repository = LoginRepository()
-    var viewModel = AppViewModel()
+    var viewModel = LoginSignUpViewModel()
     private let disposeBag = DisposeBag()
     
     // MARK: - LifeCyle

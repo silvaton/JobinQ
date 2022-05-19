@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3C03B373282EAF3E00AB679B /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C03B372282EAF3E00AB679B /* AppViewModel.swift */; };
+		3C03B373282EAF3E00AB679B /* LoginSignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C03B372282EAF3E00AB679B /* LoginSignUpViewModel.swift */; };
 		3C03B37A282EB51B00AB679B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C03B379282EB51B00AB679B /* SignUpViewController.swift */; };
 		3C03B37C282EB52500AB679B /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C03B37B282EB52500AB679B /* SignUpView.swift */; };
 		3C03B38A282F115300AB679B /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 3C03B389282F115300AB679B /* RxCocoa */; };
@@ -45,7 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3C03B372282EAF3E00AB679B /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
+		3C03B372282EAF3E00AB679B /* LoginSignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSignUpViewModel.swift; sourceTree = "<group>"; };
 		3C03B379282EB51B00AB679B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		3C03B37B282EB52500AB679B /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		3C053782283138E0008F7803 /* SignInRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInRequest.swift; sourceTree = "<group>"; };
@@ -127,6 +127,16 @@
 			path = Repository;
 			sourceTree = "<group>";
 		};
+		3C4347972836E24700F2DF76 /* LoginSignUp */ = {
+			isa = PBXGroup;
+			children = (
+				3CD849E3282B05AB00C8B334 /* Login */,
+				3C03B378282EB4E700AB679B /* SignUp */,
+				3C03B372282EAF3E00AB679B /* LoginSignUpViewModel.swift */,
+			);
+			path = LoginSignUp;
+			sourceTree = "<group>";
+		};
 		3C54D73E282AA8CA00C9A0BE /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -201,9 +211,7 @@
 		3CBC7F7B2825358E0076770C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				3CD849E3282B05AB00C8B334 /* Login */,
-				3C03B378282EB4E700AB679B /* SignUp */,
-				3C03B372282EAF3E00AB679B /* AppViewModel.swift */,
+				3C4347972836E24700F2DF76 /* LoginSignUp */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -343,7 +351,7 @@
 			files = (
 				3CEACFEB282E75A0000AD141 /* UIViewController+TJQ.swift in Sources */,
 				3C05378828313DB4008F7803 /* LoginRepository.swift in Sources */,
-				3C03B373282EAF3E00AB679B /* AppViewModel.swift in Sources */,
+				3C03B373282EAF3E00AB679B /* LoginSignUpViewModel.swift in Sources */,
 				3C5AD06F28231E500039E267 /* LoginViewController.swift in Sources */,
 				3C053783283138E0008F7803 /* SignInRequest.swift in Sources */,
 				3C54D741282AA91400C9A0BE /* DSSettings.swift in Sources */,

@@ -14,7 +14,7 @@ class SignUpViewController: UIViewController {
     //MARK: - Variable and Constants
     var contentView = SignUpView()
     var disposeBag = DisposeBag()
-    var viewModel = AppViewModel()
+    var viewModel = LoginSignUpViewModel()
     
     override func loadView() {
         self.view = contentView
