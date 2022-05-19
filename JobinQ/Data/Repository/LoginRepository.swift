@@ -7,10 +7,11 @@
 
 import FirebaseAuth
 
-class LoginRepository {
-    func signin(request: SignInRequest, completion: @escaping (_ success: Bool, _ errorMessage:Error?) ->Void) {
-        FirebaseAuth.Auth.auth().signIn(withEmail: request.userEmail!, password: request.userPassword!) {
-            [weak self] authResult, error in
+final class LoginRepository {
+    
+    // user login"
+    static func signin(request: SignInRequest, completion: @escaping (_ success: Bool, _ errorMessage:Error?) ->Void) {
+        FirebaseAuth.Auth.auth().signIn(withEmail: request.userEmail!, password: request.userPassword!) { authResult, error in
             guard self != nil else { return }
             
             guard error == nil else {
@@ -23,9 +24,9 @@ class LoginRepository {
         }
     }
     
-    func signup(request: SignInRequest, completion: @escaping (_ success: Bool, _ errorMessage: Error?)-> Void) {
-        FirebaseAuth.Auth.auth().createUser(withEmail: request.userEmail!, password: request.userPassword!) {
-            [weak self] authResult, error in
+    // create a new account:
+    static func signup(request: SignInRequest, completion: @escaping (_ success: Bool, _ errorMessage: Error?)-> Void) {
+        FirebaseAuth.Auth.auth().createUser(withEmail: request.userEmail!, password: request.userPassword!) { authResult, error in
             
             guard self != nil else { return }
             

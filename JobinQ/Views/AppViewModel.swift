@@ -30,9 +30,7 @@ public class AppViewModel: AppViewModelType {
     var successOnCreatingAccount = PublishSubject<Void>()
     var errorOnValidatingUser = PublishSubject<String>()
     var errorOnCreatingAccount = PublishSubject<String>()
-    
-    let repository =  LoginRepository()
-    
+        
     //MARK: - Validations
     
     var isAllFieldsValid: Observable<Bool> {
@@ -47,12 +45,11 @@ public class AppViewModel: AppViewModelType {
         var request = SignInRequest()
         request.userEmail = userEmail.value
         request.userPassword = userPassword.value
-        repository.signin(request: request) { success, errorMessage in
+        LoginRepository.signin(request: request) { success, errorMessage in
             if success == true {
                 self.successOnValidatingUser.onNext(())
             } else {
                 self.errorOnValidatingUser.onNext(errorMessage?.localizedDescription ?? "")
-                print(errorMessage?.localizedDescription)
             }
         }
     }
@@ -61,7 +58,7 @@ public class AppViewModel: AppViewModelType {
         var request = SignInRequest()
         request.userEmail = userEmail.value
         request.userPassword = userPassword.value
-        repository.signup(request: request) { success,error  in
+        LoginRepository.signup(request: request) { success,error  in
             if success == true {
                 self.successOnCreatingAccount.onNext(())
             } else {
