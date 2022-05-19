@@ -78,8 +78,8 @@ class SignUpView: UIView {
         
         signUpInstructionsLabel.snp.makeConstraints { make in
             make.bottom.equalTo(textFieldStackView.snp.top).inset(-DSSettings.Margin.large.rawValue)
-            make.leading.equalTo(screenStackView).offset(DSSettings.Margin.large.rawValue)
-            make.trailing.equalTo(screenStackView).offset(-DSSettings.Margin.large.rawValue)
+            make.leading.equalTo(screenStackView).offset(DSSettings.Margin.medium.rawValue)
+            make.trailing.equalTo(screenStackView).offset(-DSSettings.Margin.medium.rawValue)
         }
         
         textFieldStackView.snp.makeConstraints { make in

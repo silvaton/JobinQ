@@ -82,7 +82,8 @@ public class LoginView: UIView {
         }
         
         welcomeLabel.snp.makeConstraints { make in
-            make.centerX.equalTo(screenStackView)
+            make.leading.equalTo(screenStackView).offset(DSSettings.Margin.medium.rawValue)
+            make.trailing.equalTo(screenStackView).offset(-DSSettings.Margin.medium.rawValue)
             make.bottom.equalTo(textFieldsStackView.snp.top).inset(-DSSettings.Margin.large.rawValue)
         }
         
@@ -127,6 +128,7 @@ public class LoginView: UIView {
         label.textColor = color
         label.font = font
         label.text = text
+        label.adjustsFontSizeToFitWidth = true
         label.textAlignment = textAlignment
         return label
     }
